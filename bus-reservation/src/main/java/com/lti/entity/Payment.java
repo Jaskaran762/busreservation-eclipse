@@ -26,53 +26,49 @@ public class Payment {
 	private LocalDate paymentDateTime;
 	private String status;
 
-	// 
-	private int bookingId;
 	//
-	private int customerId;
+	//
+	//
+	//
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public double getAmount() {
 		return amount;
 	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
 	public String getPaymentType() {
 		return paymentType;
 	}
+
 	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
+
 	public LocalDate getPaymentDateTime() {
 		return paymentDateTime;
 	}
+
 	public void setPaymentDateTime(LocalDate paymentDateTime) {
 		this.paymentDateTime = paymentDateTime;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getBookingId() {
-		return bookingId;
-	}
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
-	}
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	
-	
 
 }

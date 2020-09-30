@@ -9,69 +9,68 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "passenger")
+@Table(name = "passenger")
 public class Passenger {
-	
-	//create sequence seq_passenger start with 100 increment by 10 nocache nocycle
+
+	// create sequence seq_passenger start with 100 increment by 10 nocache nocycle
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqpassenger")
-	@SequenceGenerator(name ="seqpassenger", sequenceName = "seq_passenger", allocationSize = 10)
+	@SequenceGenerator(name = "seqpassenger", sequenceName = "seq_passenger", allocationSize = 10)
 	private int id;
-	
+
 	private String name;
-	private static enum Gender{
-		Male,Female,Other;
+
+	private static enum Gender {
+		Male, Female, Other;
 	}
+
 	private int age;
 	private String address;
-	@Column(name= "seat_number")
+	@Column(name = "seat_number")
 	private int seatNumber;
-	
-	private int customerId;
-	private int bookingId;
+
+	// customer id
+
+	// booking id
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getAge() {
 		return age;
 	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public int getSeatNumber() {
 		return seatNumber;
 	}
+
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	public int getBookingId() {
-		return bookingId;
-	}
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
-	}
-	
-	
-	
+
 }
