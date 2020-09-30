@@ -17,8 +17,8 @@ public class Route {
 	@Column(name = "id")
 	private int id;
 	
-	//private int busId
-	//private int stopId
+	//private int busId//
+	//private int stopId//
 	@Column(name = "sequence")
 	private int sequence;
 	
