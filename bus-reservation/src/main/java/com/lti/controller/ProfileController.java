@@ -19,7 +19,7 @@ public class ProfileController {
 	private ProfileService profileService;
 
 	@PostMapping(path="/showProfile")
-	public Customer showProfile(@RequestParam("customerId") int id) {
+	public Customer showProfile(@RequestParam("id") int id) {
 		Customer customer = profileService.get(id);
 		return customer;
 	}

@@ -20,7 +20,7 @@ public class ProfileRepository {
 	public void update(Customer customer) {
 		int id= customer.getId();
 		entityManager.createQuery("update Customer c set c.name=:name, c.mobileNo=:mobile, c.emailId=:email where c.id=:id")
-		.setParameter("name", customer.getEmailId())
+		.setParameter("name", customer.getName())
 		.setParameter("mobile", customer.getMobileNo())
 		.setParameter("email", customer.getEmailId())
 		.setParameter("id", id)
