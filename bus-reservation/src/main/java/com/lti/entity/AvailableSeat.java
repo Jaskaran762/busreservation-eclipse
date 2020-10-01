@@ -29,6 +29,12 @@ public class AvailableSeat {
 	@JoinColumn(name ="b_id")
 	private Bus bus;
 	
+	public Bus getBus() {
+		return bus;
+	}
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
 	public int getId() {
 		return id;
 	}

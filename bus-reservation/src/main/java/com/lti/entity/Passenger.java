@@ -23,21 +23,7 @@ public class Passenger {
 	private String name;
 	private Gender gender;
 
-	public Gender getGender() {
-		return gender;
-	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
 
 	public static enum Gender {
 		Male, Female, Other;
@@ -90,6 +76,22 @@ public class Passenger {
 
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
+	}
+	
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 
 }

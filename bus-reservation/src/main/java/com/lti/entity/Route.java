@@ -25,6 +25,22 @@ public class Route {
 	@Column(name = "sequence")
 	private int sequence;
 	
+	public Stop getStop() {
+		return stop;
+	}
+
+	public void setStop(Stop stop) {
+		this.stop = stop;
+	}
+
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
+
 	@Column(name = "arrival_time")
 	private Time arrivalTime;
 	

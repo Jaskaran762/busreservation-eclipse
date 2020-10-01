@@ -27,6 +27,24 @@ public class Bus {
 	private String busNumber;
 	private double amount;
 	private int seats; 
+	public List<Route> getRoutes() {
+		return routes;
+	}
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
+	}
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+	public List<AvailableSeat> getAvailabeSeats() {
+		return availabeSeats;
+	}
+	public void setAvailabeSeats(List<AvailableSeat> availabeSeats) {
+		this.availabeSeats = availabeSeats;
+	}
 	private String status;
 	private String type;
 	

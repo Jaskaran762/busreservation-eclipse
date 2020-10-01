@@ -54,6 +54,14 @@ public class Payment {
 		return paymentType;
 	}
 
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
 	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}

@@ -24,6 +24,14 @@ public class Stop {
 	@Column(name = "name")
 	private String name;
 
+	public List<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
+	}
+
 	@OneToMany( mappedBy= "stop")
 	private List<Route> routes;
 	
