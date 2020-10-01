@@ -21,8 +21,7 @@ public class AvailableSeat {
 	
 	@Column(name="date_of_travel")
 	private LocalDate dateOfTravel;
-	@Column(name="b_id")
-	private int bId;
+	
 	@Column(name="available_seats")
 	private int availableSeats;
 	
@@ -42,12 +41,7 @@ public class AvailableSeat {
 	public void setDateOfTravel(LocalDate dateOfTravel) {
 		this.dateOfTravel = dateOfTravel;
 	}
-	public int getbId() {
-		return bId;
-	}
-	public void setbId(int bId) {
-		this.bId = bId;
-	}
+	
 	public int getAvailableSeats() {
 		return availableSeats;
 	}

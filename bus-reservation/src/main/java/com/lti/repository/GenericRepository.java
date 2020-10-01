@@ -9,4 +9,5 @@ public interface GenericRepository {
 	//public Object fetchById(Class clazz, Object id) {
 	<T> T fetchById(Class<T> clazz, Object id);
 
+
 }

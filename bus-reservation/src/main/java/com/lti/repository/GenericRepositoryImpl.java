@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class GenericRepositoryImpl implements GenericRepository {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 	
 	@Override
 	@Transactional
@@ -24,4 +25,5 @@ public class GenericRepositoryImpl implements GenericRepository {
 	public <T> T fetchById(Class<T> clazz, Object id) {
 		return entityManager.find(clazz, id);
 	}
+	
 }
