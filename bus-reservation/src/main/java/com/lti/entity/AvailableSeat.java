@@ -25,7 +25,7 @@ public class AvailableSeat {
 	@Column(name="available_seats")
 	private int availableSeats;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name ="b_id")
 	private Bus bus;
 	
