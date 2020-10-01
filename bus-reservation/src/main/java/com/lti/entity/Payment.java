@@ -26,11 +26,6 @@ public class Payment {
 	private LocalDate paymentDateTime;
 	private String status;
 
-	//
-	//
-	//
-	//
-
 	public int getId() {
 		return id;
 	}
