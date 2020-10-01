@@ -13,13 +13,13 @@ public class LoginRepositoryImpl extends GenericRepositoryImpl implements LoginR
 	@Override
 	public boolean customerRegistered(String email) {
 
-		return (Long)entityManager.createQuery(" select count(c.id) from Customer c where c.email = :email")
+		return (Long)entityManager.createQuery(" select count(c.id) from Customer c where c.emailId = :email")
 				.setParameter("email", email).getSingleResult() == 1 ? true : false;
 	}
 
 	@Override
 	public int findByEmailAndPassword(String email, String password) {
-		return (Integer)entityManager.createQuery(" select c.id from Customer c where c.email = :em and c.password = :ps")
+		return (Integer)entityManager.createQuery(" select c.id from Customer c where c.emailId = :em and c.password = :ps")
 				.setParameter("em", email)
 				.setParameter("ps", password)
 				.getSingleResult();
