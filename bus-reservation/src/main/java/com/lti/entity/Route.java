@@ -2,10 +2,13 @@ package com.lti.entity;
 
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +30,15 @@ public class Route {
 	
 	@Column(name = "departure_time")
 	private Time departureTime;
-
+	
+	@ManyToOne( cascade= CascadeType.ALL)
+	@JoinColumn( name = "stop_id")
+	private Stop stop;
+	
+	@ManyToOne( cascade= CascadeType.ALL)
+	@JoinColumn( name = "bus_id")
+	private Bus bus;
+	
 	public int getId() {
 		return id;
 	}

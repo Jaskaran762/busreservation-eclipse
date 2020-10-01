@@ -2,11 +2,17 @@ package com.lti.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +48,20 @@ public class Booking {
 	
 	@Column(name="mobile_number")
 	private int mobileNumber;
+	
+	@ManyToOne
+	@JoinColumn(name= "customer_id")
+	private Customer customer;
+	
+	@ManyToOne
+	@JoinColumn(name= "bus_id")
+	private Bus bus;
+	
+	@OneToOne
+	private Payment payment;
+	
+	@OneToMany(mappedBy="booking", cascade= CascadeType.ALL)
+	private List<Passenger> passengers;
 
 	public int getId() {
 		return id;

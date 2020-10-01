@@ -1,10 +1,14 @@
 package com.lti.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,6 +29,15 @@ public class Bus {
 	private int seats; 
 	private String status;
 	private String type;
+	
+	@OneToMany(mappedBy= "bus", cascade= CascadeType.ALL)
+	private List<Route> routes;
+	
+	@OneToMany(mappedBy= "bus",cascade= CascadeType.ALL)
+	private List<Booking> bookings;
+	
+	@OneToMany(mappedBy= "bus",cascade= CascadeType.ALL)
+	private List<AvailableSeat> availabeSeats; 
 	
 	public int getId() {
 		return id;

@@ -2,11 +2,14 @@ package com.lti.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,6 +28,11 @@ public class Payment {
 	@Column(name = "payment_date_time")
 	private LocalDate paymentDateTime;
 	private String status;
+	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name= "booking_id")
+	private Booking booking;
+	
 
 	public int getId() {
 		return id;
