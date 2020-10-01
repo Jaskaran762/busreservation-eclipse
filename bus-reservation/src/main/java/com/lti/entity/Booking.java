@@ -41,13 +41,13 @@ public class Booking {
 	private String panCard;
 	
 	@Column(name="mobile_number")
-	private int mobileNumber;
+	private String mobileNumber;
 	
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name= "customer_id")
 	private Customer customer;
 	
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name= "bus_id")
 	private Bus bus;
 	
@@ -145,11 +145,11 @@ public class Booking {
 		this.panCard = panCard;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	
