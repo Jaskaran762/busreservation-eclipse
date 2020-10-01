@@ -16,6 +16,7 @@ import com.lti.entity.Booking;
 import com.lti.entity.Customer;
 import com.lti.entity.Passenger;
 import com.lti.entity.Passenger.Gender;
+import com.lti.entity.Payment;
 import com.lti.repository.GenericRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +33,10 @@ public class BookingTest {
 		customer.setUsername("AA");
 		customer.setPassword("AA");
 		customer.setMobileNo(9111);
-		customer.setEmailId("AA@gmail.com");		
+		customer.setEmailId("AA@gmail.com");
+		
+		
+		
 	}
 	
 	@Test
@@ -46,7 +50,13 @@ public class BookingTest {
 		booking.setSeatsBooked(2);
 		booking.setDateOfTravel(LocalDate.of(2020,10, 11));
 		booking.setTimeOfBooking(LocalTime.of(22, 30));
+		booking.setTravelRoute("Mumbai to Delhi");
 		
+		Payment payment=new Payment();
+		payment.setAmount(800);
+		payment.setPaymentType("wallet");
+		payment.setPaymentDateTime(LocalDate.now());
+		booking.setPayment(payment);
 		
 		List<Passenger> passengers=new ArrayList<>();  
 		Passenger p1=new Passenger(); 
