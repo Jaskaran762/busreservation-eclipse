@@ -19,7 +19,8 @@ public class CancelRepositoryImpl implements CancelRepository {
 	@Transactional
 	public Booking updateStatus(int id,String bookingStatus) {
 		String booked="Booked";
-		int count= entityManager.createQuery("update Booking b set b.status =:bs where b.customer.id=:c and b.status =:booked")
+		System.out.println(id);
+		int count= entityManager.createQuery("update Booking b set b.status=:bs where b.customer.id=:c and b.status=:booked")
 				.setParameter("booked", booked)
 				.setParameter("bs", bookingStatus)
 				.setParameter("c", id)
