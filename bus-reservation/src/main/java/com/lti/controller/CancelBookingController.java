@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.LoginDto;
-import com.lti.dto.Status;
+import com.lti.dto.LoginStatus;
 import com.lti.entity.Booking;
 import com.lti.entity.Customer;
 import com.lti.exception.BusServiceException;
@@ -42,7 +42,7 @@ public class CancelBookingController {
 //		booking.setMobileNumber(booking.getMobileNumber());
 //		return booking;
 		
-		Status status=new Status();
+		LoginStatus status=new LoginStatus();
 		status.setCustomerId(id);
 		status.setStatus(true);
 		status.setStatusMessage("Cancelled");
@@ -51,7 +51,7 @@ public class CancelBookingController {
 		
 		catch(BusServiceException b) {
 			System.out.println(b);
-			Status status=new Status();
+			LoginStatus status=new LoginStatus();
 			status.setStatus(false);
 			status.setStatusMessage("Booked");
 			return status;
