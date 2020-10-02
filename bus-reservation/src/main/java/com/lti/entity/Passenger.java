@@ -1,5 +1,6 @@
 package com.lti.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Passenger {
 	@Column(name = "seat_number")
 	private int seatNumber;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 

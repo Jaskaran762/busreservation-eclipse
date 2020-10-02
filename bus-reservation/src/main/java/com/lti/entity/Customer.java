@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="Customer")
 public class Customer {
 
-	// create sequence customer_seq start with 100 increment by 10 nocache nocycle
+	// create sequence customer_seq start with 1000 increment by 10 nocache nocycle
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customerSequence")
 	@SequenceGenerator(name = "customerSequence", sequenceName = "customer_seq", allocationSize = 10)
@@ -25,12 +25,12 @@ public class Customer {
 	private String password;
 	
 	@Column(name="mobile_no")
-	private long mobileNo;
+	private String mobileNo;
 	
 	@Column(name="email_id")
 	private String emailId;
 	
-	@OneToMany(mappedBy= "customer",cascade= CascadeType.ALL)
+	@OneToMany(mappedBy= "customer")
 	private List<Booking> bookings;
 
 	public List<Booking> getBookings() {
@@ -65,11 +65,11 @@ public class Customer {
 		this.password = password;
 	}
 
-	public long getMobileNo() {
+	public String getMobileNo() {
 		return mobileNo;
 	}
 
-	public void setMobileNo(long mobileNo) {
+	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 
