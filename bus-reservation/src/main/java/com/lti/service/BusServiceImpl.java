@@ -16,8 +16,9 @@ public class BusServiceImpl implements BusService {
 	@Override
 	public Customer login(String email, String password) {
 		try {
-			if(!loginRepository.customerRegistered(email))
+			if(!loginRepository.customerRegistered(email)) {
 				throw new BusServiceException(" Customer is not registered !");
+			}
 			int id = loginRepository.findByEmailAndPassword(email, password);
 			return loginRepository.findById(id);
 		}

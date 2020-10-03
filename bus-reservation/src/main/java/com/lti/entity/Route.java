@@ -20,8 +20,20 @@ public class Route {
 	@Column(name = "id")
 	private int id;
 	
-	//private int busId//
-	//private int stopId//
+	@Column(name = "arrival_time")
+	private Time arrivalTime;
+	
+	@Column(name = "departure_time")
+	private Time departureTime;
+	
+	@ManyToOne( cascade= CascadeType.ALL)
+	@JoinColumn( name = "stop_id")
+	private Stop stop;
+	
+	@ManyToOne( cascade= CascadeType.ALL)
+	@JoinColumn( name = "bus_id")
+	private Bus bus;
+	
 	@Column(name = "sequence")
 	private int sequence;
 	
@@ -41,19 +53,6 @@ public class Route {
 		this.bus = bus;
 	}
 
-	@Column(name = "arrival_time")
-	private Time arrivalTime;
-	
-	@Column(name = "departure_time")
-	private Time departureTime;
-	
-	@ManyToOne( cascade= CascadeType.ALL)
-	@JoinColumn( name = "stop_id")
-	private Stop stop;
-	
-	@ManyToOne( cascade= CascadeType.ALL)
-	@JoinColumn( name = "bus_id")
-	private Bus bus;
 	
 	public int getId() {
 		return id;
