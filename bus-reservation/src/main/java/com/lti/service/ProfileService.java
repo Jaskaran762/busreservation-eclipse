@@ -16,7 +16,6 @@ public class ProfileService {
 	private ProfileRepository profileRepository;
 	
 	public Customer getCustomer(int id) {
-		System.out.println(id);
 		Customer customer = profileRepository.fetchById(Customer.class, id);
 		if(customer != null) {
 			return customer;
@@ -40,6 +39,8 @@ public class ProfileService {
 		profileRepository.save(customer);
 	}
 	
-	
+	public String getUserName(int customerId) {
+		return getCustomer(customerId).getName();
+	}
 	
 }

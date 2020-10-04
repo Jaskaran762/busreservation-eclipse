@@ -32,6 +32,11 @@ public class ProfileController {
 	@Value("${upload.dir}")
 	private String imageUploadLocation;
 
+	@GetMapping(path="/getUserName")
+	public String getUserName(@RequestParam int customerId) {
+		return profileService.getUserName(customerId);
+	}
+	
 	@GetMapping(path="/showProfile")
 	public CustomerDto showProfile(@RequestParam int id, HttpServletRequest request) {
 		Customer customer = profileService.getCustomer(id);
