@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.dto.RouteForBus;
 import com.lti.entity.Booking;
 import com.lti.entity.Bus;
 import com.lti.entity.Customer;
 import com.lti.entity.Passenger;
 import com.lti.entity.Route;
+import com.lti.entity.Stop;
 import com.lti.exception.AdminServiceException;
 import com.lti.repository.AdminRepository;
 
@@ -24,12 +26,24 @@ public class AdminService {
 	private AdminRepository adminRepository;
 	
 	//add bus
-	public void addBus(Bus bus) {
-		if(adminRepository.findByBusNumber(bus.getBusNumber())!=null) {
+	public void addBus(Bus bus,RouteForBus[] routes) {
+		//if(adminRepository.findByBusNumber(bus.getBusNumber())!=null) {
 			adminRepository.save(bus);
-		}
-		else throw new AdminServiceException("A bus with this bus number already exists");
-	}
+			for(RouteForBus route : routes) {
+				Route r=new Route();
+				r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
+				r.setBus(bus);
+				r.setArrivalTime(route.getArrivalTime());
+				r.setDepartureTime(route.getArrivalTime());
+				r.setSequence(route.getSequence());
+				adminRepository.save(r);
+				
+			}
+			
+		//}
+		//else throw new AdminServiceException("A bus with this bus number already exists");
+	//
+			}
 	
 	//add Route
 	public void addRoute(Route route) {

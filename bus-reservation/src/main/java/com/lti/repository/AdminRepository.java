@@ -6,6 +6,7 @@ import com.lti.entity.Booking;
 import com.lti.entity.Bus;
 import com.lti.entity.Customer;
 import com.lti.entity.Passenger;
+import com.lti.entity.Stop;
 
 public interface AdminRepository extends GenericRepository {
 
@@ -36,5 +37,7 @@ public interface AdminRepository extends GenericRepository {
 	List<Booking> reservationDetailsByYear();
 
 	List<Booking> reservationDetailsByMonth();
+
+	int findStopByName(String stop);
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.RouteForBus;
 import com.lti.dto.Status;
 import com.lti.entity.Booking;
 import com.lti.entity.Bus;
@@ -20,7 +21,7 @@ import com.lti.entity.Route;
 import com.lti.exception.AdminServiceException;
 import com.lti.service.AdminService;
 
-@CrossOrigin(origins = "http://domain2.com", maxAge = 3600)
+@CrossOrigin
 @RestController
 public class AdminController {
 	
@@ -28,9 +29,9 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping(path = "/addbus")
-	public @ResponseBody Status addBus(@RequestBody Bus bus) {
+	public @ResponseBody Status addBus(@RequestBody Bus bus,@RequestBody RouteForBus[] route) {
 		try {
-			adminService.addBus(bus);
+			adminService.addBus(bus,route);
 			Status status = new Status();
 			status.setStatus(true);
 			status.setStatusMessage("Bus added successfully");

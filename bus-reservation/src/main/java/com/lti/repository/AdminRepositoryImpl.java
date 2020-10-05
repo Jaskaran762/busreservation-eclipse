@@ -107,6 +107,12 @@ public class AdminRepositoryImpl extends GenericRepositoryImpl implements AdminR
 		.setParameter("number", number).getSingleResult();
 
 	}
+	@Override
+	public int findStopByName(String stationName) {
+		return (Integer)entityManager
+				.createQuery("select s.id from Stop s where s.name= :stationName")
+				.setParameter("stationName", stationName).getSingleResult();
+	}
 	
 	
 	
