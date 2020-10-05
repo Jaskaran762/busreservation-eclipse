@@ -64,7 +64,7 @@ public class AdminController {
 		return adminService.registeredCustomerWithoutBookings();
 	}
 
-	@GetMapping(path = "/profitinamonth")
+	@GetMapping(path = "/lastmonthrecordsandprofit")
 	public @ResponseBody double profitInAMonth(@RequestParam("month") int month) {
 		return adminService.Profit(month);
 	}
