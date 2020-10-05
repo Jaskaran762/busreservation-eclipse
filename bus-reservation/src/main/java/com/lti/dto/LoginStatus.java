@@ -1,7 +1,7 @@
 package com.lti.dto;
 
-public class Status {
-
+public class LoginStatus {
+	
 	private boolean status;
 	private String statusMessage;
 	private int customerId;
@@ -25,4 +25,6 @@ public class Status {
 		this.customerId = customerId;
 	}
 	
+	
+
 }

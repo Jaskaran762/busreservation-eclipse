@@ -43,18 +43,18 @@ public class Booking {
 	@Column(name="mobile_number")
 	private String mobileNumber;
 	
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name= "customer_id")
 	private Customer customer;
 	
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name= "bus_id")
 	private Bus bus;
 	
 	@OneToOne
 	private Payment payment;
 	
-	@OneToMany(mappedBy="booking", cascade= CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.ALL,mappedBy="booking")
 	private List<Passenger> passengers;
 
 	public int getId() {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.LoginDto;
-import com.lti.dto.Status;
+import com.lti.dto.LoginStatus;
 import com.lti.entity.Customer;
 import com.lti.exception.BusServiceException;
 import com.lti.service.BusService;
@@ -19,12 +19,12 @@ public class LoginController {
 	@Autowired
 	private BusService busService;
 	
-	@PostMapping(path="/login")
-	public Status login(@RequestBody LoginDto loginDto) {
+	@PostMapping(path="/loginCustomer")
+	public LoginStatus login(@RequestBody LoginDto loginDto) {
 		try {
-			Customer customer = busService.login(loginDto.getEmail(), loginDto.getPassword());
+			Customer customer = busService.login(loginDto.getEmailId(), loginDto.getPassword());
 			//hello world
-			Status status = new Status();
+			LoginStatus status = new LoginStatus();
 			status.setStatus(true);
 			status.setStatusMessage(" Login successful !");
 			status.setCustomerId(customer.getId());
@@ -32,7 +32,7 @@ public class LoginController {
 			return status;
 		}
 		catch(BusServiceException e) {
-			Status status = new Status();
+			LoginStatus status = new LoginStatus();
 			status.setStatusMessage(e.getMessage());
 			status.setStatus(false);
 			return status;

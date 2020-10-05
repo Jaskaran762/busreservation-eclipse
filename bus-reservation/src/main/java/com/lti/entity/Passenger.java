@@ -3,6 +3,8 @@ package com.lti.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,14 +24,8 @@ public class Passenger {
 	private int id;
 
 	private String name;
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
-
-
-
-	public static enum Gender {
-		Male, Female, Other;
-	}
-
 	private int age;
 	private String address;
 	@Column(name = "seat_number")

@@ -16,7 +16,7 @@ import com.lti.entity.Booking;
 import com.lti.entity.Bus;
 import com.lti.entity.Customer;
 import com.lti.entity.Passenger;
-import com.lti.entity.Passenger.Gender;
+import com.lti.entity.Gender;
 import com.lti.entity.Route;
 import com.lti.entity.Stop;
 import com.lti.repository.LoginRepositoryImpl;
@@ -122,6 +122,17 @@ class BusReservationApplicationTests {
 		booking.setCustomer(customer);
 		repo.save(booking);
 		
+		Booking booking3= new Booking();
+		booking3.setBus(bus);
+		booking3.setDateOfTravel(LocalDate.of(2020, 10, 01));
+		booking3.setMobileNumber("9855577140");
+		booking3.setPanCard("GRSVD53H5");
+		booking3.setSeatsBooked(4);
+		booking3.setStatus("Booked");
+		booking3.setTimeOfBooking(LocalTime.now());
+		booking3.setTravelRoute("Patiala-Amritsar");
+		booking3.setCustomer(customer);
+		
 		Booking booking2= new Booking();
 		booking2.setBus(bus);
 		booking2.setDateOfTravel(LocalDate.of(2020, 10, 01));
@@ -175,6 +186,16 @@ class BusReservationApplicationTests {
 		
 	}
 	
-	
+	@Test
+	public void addCustomer() {
+		Customer customer= new Customer();
+		customer.setEmailId("pp@hello.com");
+		customer.setMobileNo("98656432227");
+		customer.setName("Harsh");
+		customer.setPassword("223456789");
+		customer.setGender(Gender.Male);
+		customer.setDateOfBirth(LocalDate.now());
+		repo.save(customer);
+	}
 
 }

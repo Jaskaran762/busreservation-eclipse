@@ -1,6 +1,6 @@
 package com.lti.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,10 +26,10 @@ public class Payment {
 	@Column(name = "payment_type")
 	private String paymentType;
 	@Column(name = "payment_date_time")
-	private LocalDate paymentDateTime;
+	private LocalDateTime paymentDateTime;
 	private String status;
 	
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(mappedBy="payment", cascade= CascadeType.ALL)
 	@JoinColumn(name= "booking_id")
 	private Booking booking;
 	
@@ -66,11 +66,11 @@ public class Payment {
 		this.paymentType = paymentType;
 	}
 
-	public LocalDate getPaymentDateTime() {
+	public LocalDateTime getPaymentDateTime() {
 		return paymentDateTime;
 	}
 
-	public void setPaymentDateTime(LocalDate paymentDateTime) {
+	public void setPaymentDateTime(LocalDateTime paymentDateTime) {
 		this.paymentDateTime = paymentDateTime;
 	}
 
