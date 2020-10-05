@@ -26,6 +26,7 @@ public class Customer {
 	private int id;
 	private String name;
 	private String password;
+	private double wallet;
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
@@ -127,5 +128,13 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public double getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(double wallet) {
+		this.wallet = wallet;
+	}
+	
 	
 }

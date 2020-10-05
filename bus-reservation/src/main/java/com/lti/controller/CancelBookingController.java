@@ -2,8 +2,10 @@ package com.lti.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.LoginDto;
@@ -14,60 +16,42 @@ import com.lti.entity.Customer;
 import com.lti.exception.BusServiceException;
 import com.lti.repository.CancelRepository;
 import com.lti.service.BusService;
+import com.lti.service.CancelService;
 
 @RestController
 @CrossOrigin
 public class CancelBookingController {
 
 	@Autowired
-	private BusService busService;
-	
-	@Autowired
-	private CancelRepository cancelRepository;
-	
-	@PostMapping(path="/cancel")
-	public Object cancel(@RequestBody LoginDto loginDto) {
+	private CancelService cancelService;
+
+	@GetMapping(path = "/cancel")
+	public Object cancel(@RequestParam int customerId,@RequestParam int bookingId) {
 		try {
-		Customer customer= busService.login(loginDto.getEmailId(), loginDto.getPassword());
-		int id= customer.getId();
-		
-//		System.out.println(id);
-		//genericRespository.addWallet(id);		
-		//need to create a addWallet method, for the customer_id, add refund amount
-		//must return wallet balance
-		//display wallet balance as alert/window, after clicking confirm button
-
-		Status status=new Status();
-		if(cancelRepository.updateStatus(id,"cancelled")!=null) {		
-				status.setCustomerId(id);		
-				status.setStatus(true);		
+			Status status = new Status();
+			if (cancelService.updateStatus(bookingId)) { //checking if db updated/not updated
+				double amt=cancelService.getAmount(bookingId); //get the booking amount, for refund
+				cancelService.updateWallet(amt, customerId);  //add it to customer wallet
+				status.setCustomerId(customerId);       //display status
+				status.setStatus(true);
 				status.setStatusMessage("Cancelled");
-		}
-		return status;
+			}
+			
+			else { //if db wasn't updated      
+				throw new BusServiceException("Booking wasn't cancelled");
+			}
+			return status;
+		} // try
 
-//		Booking booking=new Booking();
-//		booking.setCustomer(customer);
-//		//booking.setBus(bus);
-//		booking.setDateOfTravel(booking.getDateOfTravel());
-//		booking.setTimeOfBooking(booking.getTimeOfBooking());
-//		booking.setTravelRoute(booking.getTravelRoute());
-//		booking.setStatus("cancelled");
-//		booking.setPanCard(booking.getPanCard());
-//		booking.setMobileNumber(booking.getMobileNumber());
-//		return booking;
-		
-	
-		}
-		
-		catch(BusServiceException b) {			
+		catch (BusServiceException b) {
 
 			System.out.println(b);
-			Status status=new Status();
+			Status status = new Status();
 			status.setStatus(false);
+			status.setCustomerId(customerId);
 			status.setStatusMessage("Not Cancelled");
 			return status;
 		}
 	}
 
 }
-

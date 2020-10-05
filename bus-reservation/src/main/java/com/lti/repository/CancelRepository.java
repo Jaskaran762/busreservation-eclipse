@@ -4,6 +4,9 @@ import com.lti.entity.Booking;
 
 public interface CancelRepository {
 
-	Booking updateStatus(int id, String bookingStatus);
+	boolean updateStatus(int id);
 
+	double getAmount(int bookingId);
+	
+	boolean addWallet(double amt,int id);
 }
