@@ -31,4 +31,10 @@ public interface AdminRepository extends GenericRepository {
 
 	String findByBusNumber(String number);
 
+	
+
+	List<Booking> reservationDetailsByYear();
+
+	List<Booking> reservationDetailsByMonth();
+
 }

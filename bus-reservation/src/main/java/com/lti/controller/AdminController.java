@@ -20,7 +20,7 @@ import com.lti.entity.Route;
 import com.lti.exception.AdminServiceException;
 import com.lti.service.AdminService;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://domain2.com", maxAge = 3600)
 @RestController
 public class AdminController {
 	
@@ -56,14 +56,15 @@ public class AdminController {
 	
 	@PostMapping(path = "/passengerwithoutreservation")
 	public @ResponseBody List<Passenger> passengerWithoutReservation() {
-		return adminService.passengerWithoutReservation();
+		return adminService.passengerWithoutRegistration();
 	}
 	
 	@PostMapping(path = "/customerswithoutbooking")
 	public @ResponseBody List<Customer> customerWithoutBooking() {
 		return adminService.registeredCustomerWithoutBookings();
 	}
-
+	
+	
 	@GetMapping(path = "/lastmonthrecordsandprofit")
 	public @ResponseBody double profitInAMonth(@RequestParam("month") int month) {
 		return adminService.Profit(month);
@@ -78,4 +79,15 @@ public class AdminController {
 	public @ResponseBody Booking bookingDetails(@RequestParam("id") int id) {
 		return adminService.reservationDetails(id);
 	}
+	
+	@PostMapping(path = "/bookingDetailsByMonth")
+	public @ResponseBody List<Booking> bookingDetailsByMonth() {
+		return adminService.reservationDetailsByMonth();
+	}
+	
+	@PostMapping(path = "/bookingDetailsByYear")
+	public @ResponseBody List<Booking> bookingDetailsByYear() {
+		return adminService.reservationDetailsByYear();
+	}
 }
+

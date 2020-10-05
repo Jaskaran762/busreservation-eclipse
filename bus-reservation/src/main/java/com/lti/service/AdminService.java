@@ -23,6 +23,7 @@ public class AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
 	
+	//add bus
 	public void addBus(Bus bus) {
 		if(adminRepository.findByBusNumber(bus.getBusNumber())!=null) {
 			adminRepository.save(bus);
@@ -30,6 +31,7 @@ public class AdminService {
 		else throw new AdminServiceException("A bus with this bus number already exists");
 	}
 	
+	//add Route
 	public void addRoute(Route route) {
 		try {
 			adminRepository.save(route);	
@@ -39,6 +41,7 @@ public class AdminService {
 		 }
 	}
 	
+	//RemoveBus
 	public Bus removeBus(int id) {
 		if(adminRepository.fetchById(Bus.class, id)!=null) {
 			Bus bus=adminRepository.removeBuses(id);
@@ -50,6 +53,7 @@ public class AdminService {
 		
 	}
 	
+	//frequentRoutes
 	public List<Object[]> frequentRoutes(){
 		try {
 			List<Object[]> frequentRoutes=adminRepository.frequentlyTravelledRoutes();
@@ -60,7 +64,8 @@ public class AdminService {
 		}
 	}
 	
-	public List<Passenger> passengerWithoutReservation(){
+	//passengersWithoutRegistration
+	public List<Passenger> passengerWithoutRegistration(){
 		try {
 			List<Passenger> passengersWithoutReservation=adminRepository.passengersWithoutReservation();
 			return passengersWithoutReservation;
@@ -70,6 +75,7 @@ public class AdminService {
 		}
 	}
 	
+	//reservationDetailsByBookingId
 	public Booking reservationDetails(int id) {
 		if(adminRepository.booking(id)!=null) {
 			return adminRepository.booking(id);
@@ -80,6 +86,7 @@ public class AdminService {
 		
 	}
 	
+	//RegisteredCustomersWithNoBookings
 	public List<Customer> registeredCustomerWithoutBookings(){
 		try {
 			return adminRepository.noBookings();
@@ -89,6 +96,7 @@ public class AdminService {
 		}
 	}
 	
+	//mostPreferredTypesOfBuses
 	public List<Object[]> mostPreferredBusTypes(){
 		try {
 			return adminRepository.mostPreferredBuses();
@@ -98,6 +106,7 @@ public class AdminService {
 		}
 	}
 	
+	//profit
 	public double Profit(int month) {
 		try {
 			return adminRepository.profitInAMonth(month);
@@ -105,6 +114,28 @@ public class AdminService {
 		catch(AdminServiceException e) {
 			throw new AdminServiceException("Failed to access. please try again later");
 		}
+	}
+	
+	//reservation details by month
+	public List<Booking> reservationDetailsByMonth() {
+		if(adminRepository.reservationDetailsByMonth()!=null) {
+			return adminRepository.reservationDetailsByMonth();
+		}
+		else {
+			throw new AdminServiceException("No bookings in current Month");	
+		}
+		
+	}
+	
+	//reservation details by year
+	public List<Booking> reservationDetailsByYear() {
+		if(adminRepository.reservationDetailsByYear()!=null) {
+			return adminRepository.reservationDetailsByYear();
+		}
+		else {
+			throw new AdminServiceException("No bookings in current Year");	
+		}
+		
 	}
 }
 

@@ -89,6 +89,17 @@ public class AdminRepositoryImpl extends GenericRepositoryImpl implements AdminR
 	}
 	
 	@Override
+	public List<Booking> reservationDetailsByMonth(){
+		List<Booking> bookingsByMonth= entityManager.createQuery("select b from Booking b where month(b.dateOfTravel)=month(SYSDATE)").getResultList();
+		return bookingsByMonth;
+	}
+	
+	@Override
+	public List<Booking> reservationDetailsByYear(){
+		List<Booking> bookingsByYear= entityManager.createQuery("select b from Booking b where year(b.dateOfTravel)=year(SYSDATE)").getResultList();
+		return bookingsByYear;
+	}
+	@Override
 	public String findByBusNumber(String number) {
 		
 		return (String)entityManager
