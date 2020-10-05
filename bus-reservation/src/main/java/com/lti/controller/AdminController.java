@@ -69,7 +69,7 @@ public class AdminController {
 		return adminService.Profit(month);
 	}
 	
-	@PostMapping(path = "/mosttravelledtypeofbuses")
+	@PostMapping(path = "/mostpreferredtypeofbuses")
 	public @ResponseBody List<Object[]> mostPreferredBuses() {
 		return adminService.mostPreferredBusTypes();
 	}
