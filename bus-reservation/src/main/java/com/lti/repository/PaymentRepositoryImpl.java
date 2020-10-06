@@ -1,11 +1,13 @@
 package com.lti.repository;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.entity.Booking;
 import com.lti.entity.Bus;
 import com.lti.entity.Payment;
 import com.lti.exception.BusServiceException;
@@ -25,16 +27,26 @@ public class PaymentRepositoryImpl extends GenericRepositoryImpl implements Paym
 				.setParameter("bus_id", busId)
 				.getSingleResult();
 		double amount=bus.getAmount(); 
-		double updatedWallet;
+		double updatedWallet=99;
 		if(customerId!=0) {
 			double walletBalance=walletService.getBalance(customerId);
 			updatedWallet=walletBalance-amount; //only if sufficient wallet amount
 			walletService.setBalance(customerId, updatedWallet);
 
 			}
-		else
-			updatedWallet=99;
-			
+		else { //if customerId ==0 i.e not registered
+			Booking b=new Booking();
+			//b.setMobileNumber(mobileNo);
+			b.setPayment(payment);//payment must b done after 
+			b.setBus(bus);
+			//b.setPassengers(passengers);
+			//b.setSeatsBooked(seatsBooked);
+			b.setTimeOfBooking(LocalTime.now());
+			//b.setDateOfTravel(dateOfTravel);
+			//b.setTravelRoute(travelRoute);
+			b.setStatus("booked");
+			save(b);
+		}
 		
 		if(updatedWallet>0) {
 			//System.out.println(walletBalance);
