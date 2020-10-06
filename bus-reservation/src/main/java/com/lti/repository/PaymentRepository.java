@@ -4,6 +4,6 @@ import com.lti.entity.Payment;
 
 public interface PaymentRepository{
 
-	void add(int bus_id);
-
+	Payment add(int bus_id,int customerId);
+	void bookingStatus(int paymentId); 
 }
