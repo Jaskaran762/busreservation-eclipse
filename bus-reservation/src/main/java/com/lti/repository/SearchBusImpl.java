@@ -1,5 +1,7 @@
 package com.lti.repository;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +40,11 @@ public class SearchBusImpl extends GenericRepositoryImpl{
 						.setParameter("destId", dstId).setParameter("id", b.getId()).getSingleResult();
 				if(sourceSequence < destinationSequence)
 				{
+					int diff = destinationSequence-sourceSequence;
+					double amount = b.getAmount();
+					b.setAmount(amount*diff);
 					list.add(b);
-				}
+				} 
 			}
 		}
 		
@@ -47,5 +52,21 @@ public class SearchBusImpl extends GenericRepositoryImpl{
 		return list;
 			
 	}
+	
+	public Time getArrivalTime(int stopId, int busId) {
+		return (Time)entityManager.createQuery("select route.arrivalTime from Route route where route.bus.id=:busId and"
+				+" route.stop.id=:stopId").setParameter("busId", busId).setParameter("stopId", stopId).getSingleResult();
+	}
 
+	public Time getDepartureTime(int stopId, int busId) {
+		return (Time)entityManager.createQuery("select route.departureTime from Route route where route.bus.id=:busId and"
+				+" route.stop.id=:stopId").setParameter("busId", busId).setParameter("stopId", stopId).getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getStopsList(){
+		List<String> l = new ArrayList<String>();
+		l = entityManager.createQuery(" select s.name from Stop s").getResultList();
+		return l;
+	}
 }

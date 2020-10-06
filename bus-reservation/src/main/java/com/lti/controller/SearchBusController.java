@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,7 @@ public class SearchBusController {
 
 	@PostMapping(path="/searchBuses")
 	public List<ShowBusDto> search(@RequestBody SearchBusDto searchBusDto) {
-		try {
-			
+
 			List<Bus> list = busService.searchBus(searchBusDto.getSource(), searchBusDto.getDestination());
 			List<ShowBusDto> buses = new ArrayList<ShowBusDto>();
 
@@ -38,14 +38,19 @@ public class SearchBusController {
 				showBus.setSeats(bus.getSeats());
 				showBus.setStatus(bus.getStatus());
 				showBus.setType(bus.getType());
-
+				showBus.setDepartureTime(busService.getDepartureTime(searchBusDto.getSource(), bus.getId()));
+				showBus.setArrivalTime(busService.getArrivalTime(searchBusDto.getSource(), bus.getId()));
 				buses.add(showBus);
 			}
 			return buses;
-		}
-		catch(Exception e) {
-			throw new BusServiceException("Error while loading buses");
-		}
+
+	}
+	
+	@GetMapping(path="/stopsList")
+	public List<String> getStops(){
+		List<String> stops = busService.getList();
+		return stops;
+
 	}
 
 }
