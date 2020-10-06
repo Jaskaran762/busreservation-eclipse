@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,19 @@ public class SearchBusService {
 			throw new BusServiceException("Some error occurred while loading the bus list!");
 		}
 	}
+	
+	public Time getArrivalTime(String stop, int busId) {
+		int stopId = searchBus.getSourceId(stop);
+		return searchBus.getArrivalTime(stopId, busId);
+	}
 
+	public Time getDepartureTime(String stop, int busId) {
+		int stopId = searchBus.getSourceId(stop);
+		return searchBus.getDepartureTime(stopId, busId);
+	}
+	
+	public List<String> getList(){
+		List<String> list = searchBus.getStopsList();
+		return list;
+	}
 }

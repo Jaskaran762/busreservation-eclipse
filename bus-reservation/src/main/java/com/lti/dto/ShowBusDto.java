@@ -1,5 +1,8 @@
 package com.lti.dto;
 
+import java.sql.Time;
+import java.time.LocalTime;
+
 public class ShowBusDto {
 	private int id;
 	private String busName;
@@ -8,6 +11,9 @@ public class ShowBusDto {
 	private int seats;
 	private String type;
 	private String Status;
+	private Time departureTime;
+	private Time arrivalTime;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,6 +55,18 @@ public class ShowBusDto {
 	}
 	public void setStatus(String status) {
 		Status = status;
+	}
+	public Time getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(Time departureTime) {
+		this.departureTime = departureTime;
+	}
+	public Time getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(Time arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 	
 	
