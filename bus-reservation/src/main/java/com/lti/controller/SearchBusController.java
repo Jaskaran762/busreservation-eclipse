@@ -25,7 +25,7 @@ public class SearchBusController {
 
 	@PostMapping(path="/searchBuses")
 	public List<ShowBusDto> search(@RequestBody SearchBusDto searchBusDto) {
-		
+
 			List<Bus> list = busService.searchBus(searchBusDto.getSource(), searchBusDto.getDestination());
 			List<ShowBusDto> buses = new ArrayList<ShowBusDto>();
 
@@ -43,12 +43,14 @@ public class SearchBusController {
 				buses.add(showBus);
 			}
 			return buses;
+
 	}
 	
 	@GetMapping(path="/stopsList")
 	public List<String> getStops(){
 		List<String> stops = busService.getList();
 		return stops;
+
 	}
 
 }
