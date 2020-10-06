@@ -24,7 +24,6 @@ public class SearchBusController {
 
 	@PostMapping(path="/searchBuses")
 	public List<ShowBusDto> search(@RequestBody SearchBusDto searchBusDto) {
-		try {
 			
 			List<Bus> list = busService.searchBus(searchBusDto.getSource(), searchBusDto.getDestination());
 			List<ShowBusDto> buses = new ArrayList<ShowBusDto>();
@@ -42,10 +41,6 @@ public class SearchBusController {
 				buses.add(showBus);
 			}
 			return buses;
-		}
-		catch(Exception e) {
-			throw new BusServiceException("Error while loading buses");
-		}
 	}
 
 }

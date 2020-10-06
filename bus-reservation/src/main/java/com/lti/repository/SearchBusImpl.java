@@ -38,6 +38,9 @@ public class SearchBusImpl extends GenericRepositoryImpl{
 						.setParameter("destId", dstId).setParameter("id", b.getId()).getSingleResult();
 				if(sourceSequence < destinationSequence)
 				{
+					int diff = destinationSequence-sourceSequence;
+					double amount = b.getAmount();
+					b.setAmount(amount*diff);
 					list.add(b);
 				}
 			}
