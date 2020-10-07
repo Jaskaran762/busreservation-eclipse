@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping(path = "/addbus")
-	public @ResponseBody Status addBus(@RequestBody Bus bus,@RequestBody RouteForBus[] route) {
+	public @ResponseBody Status addBus(@RequestBody Bus bus) {
 		try {
-			adminService.addBus(bus,route);
+			adminService.addBus(bus);
 			Status status = new Status();
 			status.setStatus(true);
 			status.setStatusMessage("Bus added successfully");
@@ -44,7 +45,25 @@ public class AdminController {
 			return status;
 			}
 		}
+	
+	@PostMapping(path="/addrouteforbus")
+	public @ResponseBody Status addBus(@RequestBody RouteForBus route) throws ParseException {
+		try {
+			adminService.addRoute(route);
+			Status status = new Status();
+			status.setStatus(true);
+			status.setStatusMessage("Route added successfully");
+			return status;
+		}
+		catch(AdminServiceException e) {
+			Status status = new Status();
+			status.setStatus(false);
+			status.setStatusMessage(e.getMessage());
+			return status;
+			}
 		
+	}
+	
 
 
 		
@@ -82,12 +101,12 @@ public class AdminController {
 	}
 	
 	@PostMapping(path = "/bookingDetailsByMonth")
-	public @ResponseBody List<Booking> bookingDetailsByMonth() {
+	public @ResponseBody List<Object[]> bookingDetailsByMonth() {
 		return adminService.reservationDetailsByMonth();
 	}
 	
 	@PostMapping(path = "/bookingDetailsByYear")
-	public @ResponseBody List<Booking> bookingDetailsByYear() {
+	public @ResponseBody List<Object[]> bookingDetailsByYear() {
 		return adminService.reservationDetailsByYear();
 	}
 }

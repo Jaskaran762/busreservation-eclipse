@@ -89,22 +89,22 @@ public class AdminRepositoryImpl extends GenericRepositoryImpl implements AdminR
 	}
 	
 	@Override
-	public List<Booking> reservationDetailsByMonth(){
-		List<Booking> bookingsByMonth= entityManager.createQuery("select b from Booking b where month(b.dateOfTravel)=month(SYSDATE)").getResultList();
+	public List<Object[]> reservationDetailsByMonth(){
+		List<Object[]> bookingsByMonth= entityManager.createQuery("select b.id, c.name,b.dateOfTravel,b.travelRoute from Booking b join b.customer c where month(b.dateOfTravel)=month(SYSDATE)").getResultList();
 		return bookingsByMonth;
 	}
 	
 	@Override
-	public List<Booking> reservationDetailsByYear(){
-		List<Booking> bookingsByYear= entityManager.createQuery("select b from Booking b where year(b.dateOfTravel)=year(SYSDATE)").getResultList();
+	public List<Object[]> reservationDetailsByYear(){
+		List<Object[]> bookingsByYear= entityManager.createQuery("select b.id,c.name,b.dateOfTravel,b.travelRoute from Booking b join b.customer c where year(b.dateOfTravel)=year(SYSDATE)").getResultList();
 		return bookingsByYear;
 	}
 	@Override
-	public String findByBusNumber(String number) {
+	public int findByBusNumber(String number) {
 		
-		return (String)entityManager
-		.createQuery("select b.busNumber from Bus b where b.busNumber= :number")
-		.setParameter("number", number).getSingleResult();
+		return (Integer)entityManager
+				.createQuery("select b.id from Bus b where b.busNumber= :number")
+				.setParameter("number", number).getSingleResult();
 
 	}
 	@Override
@@ -113,6 +113,7 @@ public class AdminRepositoryImpl extends GenericRepositoryImpl implements AdminR
 				.createQuery("select s.id from Stop s where s.name= :stationName")
 				.setParameter("stationName", stationName).getSingleResult();
 	}
+	
 	
 	
 	

@@ -30,13 +30,13 @@ public interface AdminRepository extends GenericRepository {
 	//most preferred type of buses
 	List<Object[]> mostPreferredBuses();
 
-	String findByBusNumber(String number);
+	int findByBusNumber(String number);
 
 	
 
-	List<Booking> reservationDetailsByYear();
+	List<Object[]> reservationDetailsByYear();
 
-	List<Booking> reservationDetailsByMonth();
+	List<Object[]> reservationDetailsByMonth();
 
 	int findStopByName(String stop);
 

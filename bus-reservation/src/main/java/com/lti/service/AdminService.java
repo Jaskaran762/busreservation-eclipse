@@ -1,5 +1,8 @@
 package com.lti.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -26,20 +29,36 @@ public class AdminService {
 	private AdminRepository adminRepository;
 	
 	//add bus
-	public void addBus(Bus bus,RouteForBus[] routes) {
+	public void addBus(Bus bus) {
 		//if(adminRepository.findByBusNumber(bus.getBusNumber())!=null) {
 			adminRepository.save(bus);
-			for(RouteForBus route : routes) {
+			/*for(RouteForBus route : routes) {
 				Route r=new Route();
 				r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
 				r.setBus(bus);
 				r.setArrivalTime(route.getArrivalTime());
 				r.setDepartureTime(route.getArrivalTime());
 				r.setSequence(route.getSequence());
-				adminRepository.save(r);
+				adminRepository.save(r);*/
 				
 			}
 			
+	public void addRoute(RouteForBus route) throws ParseException {
+		
+		DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+		Route r=new Route();
+		r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
+		r.setBus(route.getBus());
+		r.getBus().setId(adminRepository.findByBusNumber(r.getBus().getBusNumber()));
+		r.setArrivalTime(dateFormat.parse(route.getArrivalTime()));
+		r.setDepartureTime(dateFormat.parse(route.getArrivalTime()));
+		r.setSequence(route.getSequence());
+		adminRepository.save(r);
+
+		
+		
+		
+		
 		//}
 		//else throw new AdminServiceException("A bus with this bus number already exists");
 	//
@@ -131,7 +150,7 @@ public class AdminService {
 	}
 	
 	//reservation details by month
-	public List<Booking> reservationDetailsByMonth() {
+	public List<Object[]> reservationDetailsByMonth() {
 		if(adminRepository.reservationDetailsByMonth()!=null) {
 			return adminRepository.reservationDetailsByMonth();
 		}
@@ -142,7 +161,7 @@ public class AdminService {
 	}
 	
 	//reservation details by year
-	public List<Booking> reservationDetailsByYear() {
+	public List<Object[]> reservationDetailsByYear() {
 		if(adminRepository.reservationDetailsByYear()!=null) {
 			return adminRepository.reservationDetailsByYear();
 		}
