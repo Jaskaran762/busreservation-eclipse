@@ -1,8 +1,5 @@
 package com.lti.repository;
 
-import javax.persistence.EntityManager;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +14,12 @@ public class CancelRepositoryImpl extends GenericRepositoryImpl implements Cance
 	@Override
 	@Transactional
 	public boolean updateStatus(int id) {  	//update Booking set status="cancelled" where customer_id=1 and status="booked";
-		String booked="booked";
 		String bookingStatus="Cancelled";
 		int count=0;
 		Booking booking=fetchById(Booking.class,id);
 		System.out.println(booking.getStatus());
 		if(booking.getStatus().equals("booked")) {
-		//System.out.println(id);
-		count= entityManager.createQuery("update Booking b set b.status=:setStatus where b.id=:book_id")				
+				count= entityManager.createQuery("update Booking b set b.status=:setStatus where b.id=:book_id")				
 				.setParameter("setStatus", bookingStatus)
 				.setParameter("book_id", id)
 				.executeUpdate();
