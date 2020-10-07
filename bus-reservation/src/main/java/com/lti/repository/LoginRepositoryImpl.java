@@ -1,8 +1,5 @@
 package com.lti.repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.lti.entity.Customer;
@@ -22,6 +19,13 @@ public class LoginRepositoryImpl extends GenericRepositoryImpl implements LoginR
 		return (Integer)entityManager.createQuery(" select c.id from Customer c where c.emailId = :em and c.password = :ps")
 				.setParameter("em", email)
 				.setParameter("ps", password)
+				.getSingleResult();
+	}
+	
+	@Override
+	public int findByEmail(String email) {
+		return (Integer)entityManager.createQuery(" select c.id from Customer c where c.emailId = :em")
+				.setParameter("em", email)
 				.getSingleResult();
 	}
 

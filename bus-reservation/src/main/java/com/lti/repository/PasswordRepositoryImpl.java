@@ -25,4 +25,14 @@ public class PasswordRepositoryImpl extends GenericRepositoryImpl implements Pas
 		System.out.println(count);
 		return count==1?true:false;
 	}
+	
+	@Override
+	public boolean setPassword(int customerId,String newPassword) {
+		int count = entityManager.createQuery("update Customer c set c.password=:newPassword where c.id=:customerId")
+				.setParameter("customerId", customerId)
+				.setParameter("newPassword", newPassword)
+				.executeUpdate();			
+		System.out.println(count);
+		return count==1?true:false;
+	}
 }
