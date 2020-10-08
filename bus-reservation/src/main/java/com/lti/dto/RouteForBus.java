@@ -1,13 +1,14 @@
 package com.lti.dto;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 import com.lti.entity.Bus;
 import com.lti.entity.Stop;
 
 public class RouteForBus {
-	private String arrivalTime;
-	private String departureTime;
+	private LocalTime arrivalTime;
+	private LocalTime departureTime;
 	private String stop;
 	private int sequence;
 	private Bus bus;
@@ -25,16 +26,16 @@ public class RouteForBus {
 	public void setStop(String stop) {
 		this.stop = stop;
 	}
-	public String getArrivalTime() {
+	public LocalTime getArrivalTime() {
 		return arrivalTime;
 	}
-	public void setArrivalTime(String arrivalTime) {
+	public void setArrivalTime(LocalTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	public String getDepartureTime() {
+	public LocalTime getDepartureTime() {
 		return departureTime;
 	}
-	public void setDepartureTime(String departureTime) {
+	public void setDepartureTime(LocalTime departureTime) {
 		this.departureTime = departureTime;
 	}
 	public Bus getBus() {

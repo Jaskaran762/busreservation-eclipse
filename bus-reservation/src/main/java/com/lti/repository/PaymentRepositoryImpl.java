@@ -80,4 +80,11 @@ public class PaymentRepositoryImpl extends GenericRepositoryImpl implements Paym
 		.executeUpdate();
 	}
 	
+	public Payment fetchByDateTimeandPanCard(LocalDateTime dateTime, String panCard) {
+		
+		return (Payment)entityManager.createQuery("select p from Payment p join p.booking b where p.paymentDateTime=:dateTime and b.panCard=:panCard")
+				.setParameter("dateTime", dateTime)
+				.setParameter("panCard", panCard)
+				.getSingleResult();
+	}
 }

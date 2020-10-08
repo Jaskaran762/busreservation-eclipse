@@ -54,7 +54,7 @@ public class Booking {
 	@OneToOne
 	private Payment payment;
 	
-	@OneToMany(cascade= CascadeType.ALL,mappedBy="booking")
+	@OneToMany(mappedBy="booking")
 	private List<Passenger> passengers;
 
 	public int getId() {

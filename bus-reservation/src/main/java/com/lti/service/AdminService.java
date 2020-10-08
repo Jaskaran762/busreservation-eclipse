@@ -50,8 +50,8 @@ public class AdminService {
 		r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
 		r.setBus(route.getBus());
 		r.getBus().setId(adminRepository.findByBusNumber(r.getBus().getBusNumber()));
-		r.setArrivalTime(dateFormat.parse(route.getArrivalTime()));
-		r.setDepartureTime(dateFormat.parse(route.getArrivalTime()));
+		r.setArrivalTime(route.getArrivalTime());
+		r.setDepartureTime(route.getArrivalTime());
 		r.setSequence(route.getSequence());
 		adminRepository.save(r);
 

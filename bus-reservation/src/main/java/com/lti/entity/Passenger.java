@@ -31,7 +31,7 @@ public class Passenger {
 	@Column(name = "seat_number")
 	private int seatNumber;
 
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 
