@@ -24,12 +24,12 @@ public class SearchBusService {
 		return list;
 	}
 	
-	public Time getArrivalTime(String stop, int busId) {
+	public String getArrivalTime(String stop, int busId) {
 		int stopId = searchBus.getSourceId(stop);
 		return searchBus.getArrivalTime(stopId, busId);
 	}
 
-	public Time getDepartureTime(String stop, int busId) {
+	public String getDepartureTime(String stop, int busId) {
 		int stopId = searchBus.getSourceId(stop);
 		return searchBus.getDepartureTime(stopId, busId);
 	}

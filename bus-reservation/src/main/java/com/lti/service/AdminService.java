@@ -3,6 +3,7 @@ package com.lti.service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -50,8 +51,8 @@ public class AdminService {
 		r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
 		r.setBus(route.getBus());
 		r.getBus().setId(adminRepository.findByBusNumber(r.getBus().getBusNumber()));
-		r.setArrivalTime(java.sql.Time.valueOf(route.getArrivalTime()));
-		r.setDepartureTime(java.sql.Time.valueOf(route.getArrivalTime()));
+		r.setArrivalTime(route.getArrivalTime());
+		r.setDepartureTime(route.getArrivalTime());
 		r.setSequence(route.getSequence());
 		adminRepository.save(r);
 

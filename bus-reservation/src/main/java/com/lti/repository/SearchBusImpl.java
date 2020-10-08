@@ -53,13 +53,13 @@ public class SearchBusImpl extends GenericRepositoryImpl{
 			
 	}
 	
-	public Time getArrivalTime(int stopId, int busId) {
-		return (Time)entityManager.createQuery("select route.arrivalTime from Route route where route.bus.id=:busId and"
+	public String getArrivalTime(int stopId, int busId) {
+		return (String)entityManager.createQuery("select route.arrivalTime from Route route where route.bus.id=:busId and"
 				+" route.stop.id=:stopId").setParameter("busId", busId).setParameter("stopId", stopId).getSingleResult();
 	}
 
-	public Time getDepartureTime(int stopId, int busId) {
-		return (Time)entityManager.createQuery("select route.departureTime from Route route where route.bus.id=:busId and"
+	public String getDepartureTime(int stopId, int busId) {
+		return (String)entityManager.createQuery("select route.departureTime from Route route where route.bus.id=:busId and"
 				+" route.stop.id=:stopId").setParameter("busId", busId).setParameter("stopId", stopId).getSingleResult();
 	}
 	

@@ -48,12 +48,14 @@ public class AdminController {
 	
 	@PostMapping(path="/addrouteforbus")
 	public @ResponseBody Status addBusRoute(@RequestBody RouteForBus route) throws ParseException {
+		System.out.print("shivam   "+route.toString());
 		try {
 			adminService.addRoute(route);
 			Status status = new Status();
 			status.setStatus(true);
 			status.setStatusMessage("Route added successfully");
 			return status;
+			
 		}
 		catch(AdminServiceException e) {
 			Status status = new Status();

@@ -44,6 +44,11 @@ public class RouteForBus {
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
+	@Override
+	public String toString() {
+		return "RouteForBus [arrivalTime=" + arrivalTime + ", departureTime=" + departureTime + ", stop=" + stop
+				+ ", sequence=" + sequence + ", bus=" + bus + "]";
+	}
 	
 
 }

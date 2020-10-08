@@ -36,7 +36,8 @@ class BusReservationApplicationTests {
 		customer.setName("Harsh");
 		customer.setPassword("12344");
 		repo.save(customer);
-		
+	
+		/*
 		List<Route> routeList= new ArrayList<>();
 		Route route= new Route();
 		route.setArrivalTime(Time.valueOf(LocalTime.of(8, 30)));
@@ -182,7 +183,7 @@ class BusReservationApplicationTests {
 		repo.save(route);
 		repo.save(route2);
 		repo.save(route3);
-		repo.save(route4);
+		repo.save(route4);*/
 		
 	}
 	

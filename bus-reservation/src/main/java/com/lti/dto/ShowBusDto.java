@@ -11,8 +11,8 @@ public class ShowBusDto {
 	private int seats;
 	private String type;
 	private String Status;
-	private Time departureTime;
-	private Time arrivalTime;
+	private String departureTime;
+	private String arrivalTime;
 	
 	public int getId() {
 		return id;
@@ -56,18 +56,20 @@ public class ShowBusDto {
 	public void setStatus(String status) {
 		Status = status;
 	}
-	public Time getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
-	public void setDepartureTime(Time departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
-	public Time getArrivalTime() {
+	public String getArrivalTime() {
 		return arrivalTime;
 	}
-	public void setArrivalTime(Time arrivalTime) {
+	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
+	
+	
 	
 	
 	

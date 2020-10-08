@@ -1,6 +1,7 @@
 package com.lti.entity;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -22,10 +23,10 @@ public class Route {
 	private int id;
 	
 	@Column(name = "arrival_time")
-	private Time arrivalTime;
+	private String arrivalTime;
 	
 	@Column(name = "departure_time")
-	private	Time departureTime;
+	private	String departureTime;
 	
 	@ManyToOne( cascade= CascadeType.ALL)
 	@JoinColumn( name = "stop_id")
@@ -34,6 +35,8 @@ public class Route {
 	@ManyToOne( cascade= CascadeType.ALL)
 	@JoinColumn( name = "bus_id")
 	private Bus bus;
+	
+	
 	
 	@Column(name = "sequence")
 	private int sequence;
@@ -71,21 +74,27 @@ public class Route {
 		this.sequence = sequence;
 	}
 
-	public Time getArrivalTime() {
+	public String getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Time arrivalTime) {
+	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Time getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Time departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
+
+
+
+
+
+
 
 
 	 
