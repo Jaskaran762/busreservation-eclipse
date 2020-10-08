@@ -8,10 +8,10 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.lti.project</groupId>
-	<artifactId>bus-reservation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>bus-reservation</name>
+		<groupId>com.lti.project</groupId>
+		<artifactId>bus-reservation</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<name>bus-reservation</name>
 	<description>bus-project</description>
 
 	<properties>
@@ -38,6 +38,15 @@
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+    		<groupId>javax.mail</groupId>
+   		 	<artifactId>mail</artifactId>
+  		 	<version>1.4</version>
+		</dependency>
+		<dependency> 
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId> 
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
