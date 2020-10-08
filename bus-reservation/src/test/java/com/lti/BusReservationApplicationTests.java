@@ -40,26 +40,26 @@ class BusReservationApplicationTests {
 		/*
 		List<Route> routeList= new ArrayList<>();
 		Route route= new Route();
-		route.setArrivalTime(Time.valueOf(LocalTime.of(8, 30)));
-		route.setDepartureTime(Time.valueOf(LocalTime.of(9, 30)));
+		route.setArrivalTime(LocalTime.of(8, 30));
+		route.setDepartureTime(LocalTime.of(9, 30));
 		route.setSequence(1);
 		routeList.add(route);
 		
 		Route route2= new Route();
-		route.setArrivalTime(Time.valueOf(LocalTime.of(10, 00)));
-		route.setDepartureTime(Time.valueOf(LocalTime.of(11,00)));
+		route.setArrivalTime(LocalTime.of(10, 00));
+		route.setDepartureTime(LocalTime.of(11,00));
 		route.setSequence(2);
 		routeList.add(route2);
 		
 		Route route3= new Route();
-		route.setArrivalTime(Time.valueOf(LocalTime.of(12, 00)));
-		route.setDepartureTime(Time.valueOf(LocalTime.of(12,30)));
+		route.setArrivalTime(LocalTime.of(12, 00));
+		route.setDepartureTime((LocalTime.of(12,30)));
 		route.setSequence(3);
 		routeList.add(route3);
 		
 		Route route4 = new Route();
-		route.setArrivalTime(Time.valueOf(LocalTime.of(1,00)));
-		route.setDepartureTime(Time.valueOf(LocalTime.of(1,30)));
+		route.setArrivalTime(LocalTime.of(1,00));
+		route.setDepartureTime(LocalTime.of(1,30));
 		route.setSequence(4);
 		
 		Stop stop = new Stop();

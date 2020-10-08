@@ -23,6 +23,7 @@ public class Route {
 	private int id;
 	
 	@Column(name = "arrival_time")
+
 	private String arrivalTime;
 	
 	@Column(name = "departure_time")
@@ -74,6 +75,7 @@ public class Route {
 		this.sequence = sequence;
 	}
 
+
 	public String getArrivalTime() {
 		return arrivalTime;
 	}
@@ -88,6 +90,7 @@ public class Route {
 
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
+
 	}
 
 

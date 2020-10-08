@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.BookDto;
 import com.lti.dto.BookingDto;
+import com.lti.dto.BookingPassengerDto;
+import com.lti.dto.BookingStatus;
 import com.lti.dto.LoginDto;
+import com.lti.dto.PassengerDto;
 import com.lti.dto.Status;
 
 import com.lti.entity.Customer;
+import com.lti.entity.Passenger;
 import com.lti.exception.BusServiceException;
 import com.lti.repository.CancelRepository;
 import com.lti.service.BookingService;
@@ -71,4 +76,20 @@ public class BookingController {
 		return bookingService.showBookings(customerId);
 	}
 
+	@PostMapping(path="/saveBookings")
+	public BookingStatus saveBooking(@RequestBody BookDto booking) {
+		System.out.println(booking.getBusId());
+		int bookId = bookingService.saveBooking(booking);
+		BookingStatus status = new BookingStatus();
+		if(bookId!=0) {
+			status.setBookingId(bookId);
+			status.setMessage("Successfully saved  your Booking");
+			status.setStatus("Pending");
+		}
+		else {
+			status.setMessage("Error occured while saving your Booking");
+			status.setStatus("Failed");
+		}
+		return status;
+	}
 }
