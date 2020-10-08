@@ -31,13 +31,15 @@ public interface AdminRepository extends GenericRepository {
 	List<Object[]> mostPreferredBuses();
 
 	int findByBusNumber(String number);
-
 	
+	public List<Object[]> bookingDetails(String id);
 
 	List<Object[]> reservationDetailsByYear();
 
 	List<Object[]> reservationDetailsByMonth();
 
 	int findStopByName(String stop);
+	
+	void removeBus(String busNumber);
 
 }

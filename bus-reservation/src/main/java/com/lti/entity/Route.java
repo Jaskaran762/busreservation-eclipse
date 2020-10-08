@@ -22,10 +22,10 @@ public class Route {
 	private int id;
 	
 	@Column(name = "arrival_time")
-	private Date arrivalTime;
+	private Time arrivalTime;
 	
 	@Column(name = "departure_time")
-	private Date departureTime;
+	private	Time departureTime;
 	
 	@ManyToOne( cascade= CascadeType.ALL)
 	@JoinColumn( name = "stop_id")
@@ -71,21 +71,23 @@ public class Route {
 		this.sequence = sequence;
 	}
 
-	public Date getArrivalTime() {
+	public Time getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date date) {
-		this.arrivalTime = date;
+	public void setArrivalTime(Time arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureTime() {
+	public Time getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date date) {
-		this.departureTime = date;
+	public void setDepartureTime(Time departureTime) {
+		this.departureTime = departureTime;
 	}
+
+
 	 
 	
 	

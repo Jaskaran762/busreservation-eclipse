@@ -50,8 +50,8 @@ public class AdminService {
 		r.setStop(adminRepository.fetchById(Stop.class, adminRepository.findStopByName(route.getStop())));
 		r.setBus(route.getBus());
 		r.getBus().setId(adminRepository.findByBusNumber(r.getBus().getBusNumber()));
-		r.setArrivalTime(dateFormat.parse(route.getArrivalTime()));
-		r.setDepartureTime(dateFormat.parse(route.getArrivalTime()));
+		r.setArrivalTime(java.sql.Time.valueOf(route.getArrivalTime()));
+		r.setDepartureTime(java.sql.Time.valueOf(route.getArrivalTime()));
 		r.setSequence(route.getSequence());
 		adminRepository.save(r);
 
@@ -65,7 +65,7 @@ public class AdminService {
 			}
 	
 	//add Route
-	public void addRoute(Route route) {
+	public void addSeparateRoute(Route route) {
 		try {
 			adminRepository.save(route);	
 		} 
@@ -75,7 +75,7 @@ public class AdminService {
 	}
 	
 	//RemoveBus
-	public Bus removeBus(int id) {
+	/*public Bus removeBus(int id) {
 		if(adminRepository.fetchById(Bus.class, id)!=null) {
 			Bus bus=adminRepository.removeBuses(id);
 			return bus;
@@ -84,7 +84,7 @@ public class AdminService {
 			throw new AdminServiceException("No such buses in the table"); 
 		 }
 		
-	}
+	}*/
 	
 	//frequentRoutes
 	public List<Object[]> frequentRoutes(){
@@ -109,12 +109,12 @@ public class AdminService {
 	}
 	
 	//reservationDetailsByBookingId
-	public Booking reservationDetails(int id) {
-		if(adminRepository.booking(id)!=null) {
-			return adminRepository.booking(id);
+	public List<Object[]> reservationDetails(String id) {
+		if(adminRepository.bookingDetails(id)!=null) {
+			return adminRepository.bookingDetails(id);
 		}
 		else {
-			throw new AdminServiceException("Please check the booking id again");	
+			throw new AdminServiceException("No Data Found");	
 		}
 		
 	}
@@ -169,6 +169,10 @@ public class AdminService {
 			throw new AdminServiceException("No bookings in current Year");	
 		}
 		
+	}
+	
+	public void removeBus(String busNumber) {
+		adminRepository.removeBus(busNumber);
 	}
 }
 

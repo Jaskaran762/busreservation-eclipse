@@ -47,7 +47,7 @@ public class AdminController {
 		}
 	
 	@PostMapping(path="/addrouteforbus")
-	public @ResponseBody Status addBus(@RequestBody RouteForBus route) throws ParseException {
+	public @ResponseBody Status addBusRoute(@RequestBody RouteForBus route) throws ParseException {
 		try {
 			adminService.addRoute(route);
 			Status status = new Status();
@@ -95,8 +95,8 @@ public class AdminController {
 		return adminService.mostPreferredBusTypes();
 	}
 	
-	@GetMapping(path = "/bookingDetails")
-	public @ResponseBody Booking bookingDetails(@RequestParam("id") int id) {
+	@PostMapping(path = "/bookingDetails")
+	public @ResponseBody List<Object[]> bookingDetails(@RequestParam("id") String id) {
 		return adminService.reservationDetails(id);
 	}
 	
@@ -109,5 +109,30 @@ public class AdminController {
 	public @ResponseBody List<Object[]> bookingDetailsByYear() {
 		return adminService.reservationDetailsByYear();
 	}
+	@PostMapping(path = "/removebus")
+	public @ResponseBody void removeBus(@RequestParam("busNumber") String busNumber) {
+		adminService.removeBus(busNumber);
+	}
+	
+	/*@PostMapping(path="/addroute")
+	public @ResponseBody Status addRoute(@RequestBody RouteForBus route) throws ParseException {
+		try {
+			adminService.addRoute(route);
+			Status status = new Status();
+			status.setStatus(true);
+			status.setStatusMessage("Route added successfully");
+			return status;
+		}
+		catch(AdminServiceException e) {
+			Status status = new Status();
+			status.setStatus(false);
+			status.setStatusMessage(e.getMessage());
+			return status;
+			}
+		
+	}*/
+	
+	
+	
 }
 

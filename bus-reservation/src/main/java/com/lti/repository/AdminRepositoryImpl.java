@@ -114,7 +114,25 @@ public class AdminRepositoryImpl extends GenericRepositoryImpl implements AdminR
 				.setParameter("stationName", stationName).getSingleResult();
 	}
 	
+	@Override
+	public List<Object[]> bookingDetails(String id) {
+		
+		List<Object[]> bookings=entityManager.createQuery("select b.id,c.name,b.dateOfTravel,b.travelRoute,p.amount from Booking b join b.customer c join b.payment p where b.id =:id or c.emailId =:cid").setParameter("id", converter(id)).setParameter("cid", id).getResultList();
+		return bookings;
+		
+	}
+	public void removeBus(String busNumber) {
+		entityManager.createQuery("Update Bus b set b.status=unavailable where b.busNumber =:busNumber").setParameter("busNumber", busNumber);
+	}
 	
+	public int converter(String s) {
+		try {
+			return Integer.parseInt(s);
+		}
+		catch(NumberFormatException e) {
+			return -1;
+		}
+	}
 	
 	
 	

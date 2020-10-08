@@ -25,6 +25,13 @@ public class RouteForBus {
 	public void setStop(String stop) {
 		this.stop = stop;
 	}
+	
+	public Bus getBus() {
+		return bus;
+	}
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
 	public String getArrivalTime() {
 		return arrivalTime;
 	}
@@ -37,11 +44,6 @@ public class RouteForBus {
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
-	public Bus getBus() {
-		return bus;
-	}
-	public void setBus(Bus bus) {
-		this.bus = bus;
-	}
+	
 
 }
