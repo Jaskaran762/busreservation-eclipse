@@ -13,6 +13,15 @@ public class BookingDto {
 	private LocalDate dateOfTravel;
 	private LocalTime timeOfTravel;
 	private int noOfBookings;
+	private String bookingStatus;
+	
+	
+	public String getBookingStatus() {
+		return bookingStatus;
+	}
+	public void setBookingStatus(String bookingStatus) {
+		this.bookingStatus = bookingStatus;
+	}
 	public int getBookingId() {
 		return bookingId;
 	}

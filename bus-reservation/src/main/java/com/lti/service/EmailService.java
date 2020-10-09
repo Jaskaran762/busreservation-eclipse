@@ -20,8 +20,8 @@ public class EmailService {
 		int otp=random.nextInt(10000); //generate a 4 digit otp
 		System.out.println(otp);
 		SimpleMailMessage message = new SimpleMailMessage();
-		//message.setFrom("BusReservation@outlook.com");
-		message.setFrom("do.not.reply.busreservation@gmail.com");		
+		message.setFrom("BusReservation@outlook.com");
+		//message.setFrom("do.not.reply.busreservation@gmail.com");		
 		message.setTo(customer.getEmailId());
 		message.setSubject("Bus reservation OTP verification");
 		

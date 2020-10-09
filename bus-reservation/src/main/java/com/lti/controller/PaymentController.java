@@ -36,4 +36,10 @@ public class PaymentController {
 		PaymentStatus statusById = paymentService.fetchPaymentById(paymentId);
 		return statusById;
 	}
+	
+
+	@PostMapping(path="/PaymentByBookingId")
+	public int fetchPaymentByBookingId(@RequestParam("bookingId") int bookingId ) {
+		return paymentService.fetchPaymentByBookingId(bookingId);
+	}
 }

@@ -35,6 +35,7 @@ public class PaymentService {
 		if(payment.getBusId() != 0) {
 			Payment returnPayment = paymentRepository.save(pay);
 			booking.setPayment(returnPayment);
+			booking.setStatus("booked");
 			paymentRepository.save(booking);
 			// = paymentRepository.fetchByDateTimeandPanCard(dateTime,booking.getPanCard());
 			PaymentStatus status = new PaymentStatus();
@@ -82,4 +83,12 @@ public class PaymentService {
 		
 	}
 	
+	@Transactional
+	public int fetchPaymentByBookingId(int bookingId) {
+		System.out.println(bookingId);
+		Booking booking = paymentRepository.fetchById(Booking.class, bookingId);
+		Payment payment = booking.getPayment();
+		return payment.getId();
+		
+	}
 }

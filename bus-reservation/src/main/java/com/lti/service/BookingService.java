@@ -43,6 +43,7 @@ public class BookingService {
 			dto.setTimeOfTravel(b.getTimeOfBooking());
 			dto.setJourneyStartPos(routeElements[0]);
 			dto.setJourneyEndPos(routeElements[1]);
+			dto.setBookingStatus(b.getStatus());
 			
 			bookingsDto.add(dto);
 		}
